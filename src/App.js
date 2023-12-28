@@ -1,21 +1,50 @@
+import { useState, useEffect } from 'react';
 import './App.css';
 import SideBar from './components/Sidebar';
 import WeatherDetails from './components/Weather';
 import WeekForecast from './components/Weather/WeekForecast';
 import SearchBar from './components/search';
+import { API_KEY } from '../src/utils/constants/index'
+import Loader from './components/shared/Loader'
+
 
 function App() {
+
+  const [search, setSearch] = useState();
+  const [tempData, setTempData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search}&days=1&aqi=no&alerts=no`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setIsLoading(false)
+        setTempData(data);
+
+      } catch (error) {
+        console.error("Could not fetch the data", error);
+      }
+    };
+
+    fetchData();
+  }, [search]);
+
   return (
-    <div className='flex w-full p-8 gap-8'>
+    <div className='flex w-full h-full p-8 gap-8'>
       <SideBar />
       <div className='flex flex-col gap-5 w-3/5 ml-8'>
-        <SearchBar />
+        <SearchBar setSearch={setSearch} />
         <div className='flex justify-center'>
-          <WeatherDetails />
+          {!isLoading ? <WeatherDetails tempData={tempData} isLoading={isLoading} /> : <Loader />}
         </div>
       </div>
       <div className='w-4/12 mb-5'>
-        <WeekForecast />
+        {!isLoading ? <WeekForecast tempData={tempData} isLoading={isLoading} /> : <Loader />}
       </div>
     </div>
   );
