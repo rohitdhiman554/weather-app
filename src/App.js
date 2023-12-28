@@ -6,20 +6,15 @@ import SearchBar from './components/search';
 
 function App() {
   return (
-    <div className='flex w-full'>
-
-      <div className='h-full p-8'>
-        <SideBar />
-      </div>
-      <div className='flex flex-col w-3/5 ml-5'>
-        <div className='p-8'>
-          <SearchBar />
-        </div>
+    <div className='flex w-full p-8 gap-8'>
+      <SideBar />
+      <div className='flex flex-col gap-5 w-3/5 ml-8'>
+        <SearchBar />
         <div className='flex justify-center'>
           <WeatherDetails />
         </div>
       </div>
-      <div className='p-8 w-4/12 h-screen'>
+      <div className='w-4/12 mb-5'>
         <WeekForecast />
       </div>
     </div>
