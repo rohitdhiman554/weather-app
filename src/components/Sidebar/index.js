@@ -2,8 +2,10 @@ import WeatherLogo from '../../assets/icon/weather'
 
 const SideBar = () => {
     return (
-        <div className='border-2 h-full bg-slate-100 border-black p-2 rounded-md'>
-            <WeatherLogo width={30} height={40} />
+        <div className='border-2 flex items-center flex-col h-full bg-[#EAECEF] p-2 rounded-md'>
+            <WeatherLogo width={35} height={35} />
+            <span className='font-medium text-sm'>
+                Weather</span>
         </div>
     )
 }
