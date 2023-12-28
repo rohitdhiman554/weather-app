@@ -27,7 +27,6 @@ const WeatherDetails = () => {
         fetchData();
     }, []);
 
-    console.log(">", tempData);
     const WeatherIcon = (weather) => {
         switch (weather) {
             case 'Sunny':
@@ -41,7 +40,6 @@ const WeatherDetails = () => {
         }
     };
 
-    console.log("temp", tempData);
 
     return (
         <Fragment>
@@ -57,7 +55,7 @@ const WeatherDetails = () => {
                             <img src={WeatherIcon(tempData.current.condition)} width={180} alt='weather logo' />
                         </div >
                         <Forecast hourlyForcastData={tempData} />
-                        <WeatherCondition />
+                        <WeatherCondition airCondition={tempData} />
                     </div >
                     : null}
         </Fragment>
