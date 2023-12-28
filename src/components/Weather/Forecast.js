@@ -6,7 +6,7 @@ const Forecast = () => {
             <span className='font-bold text-sm'>TODAY'S FORECAST</span>
             <div className='flex gap-5 w-full'>
                 <div className='flex flex-col items-center px-8 py-4 gap-2 shadow-lg rounded-md'>
-                    <span className='font-semibold'>6:00 AM</span>
+                    <span className='font-semibold text-[#98A2B3]'>6:00 AM</span>
                     <img src={SunLogo} width={60} alt='sunlogo' />
                     <span className='font-bold text-lg'>25&deg;</span>
                 </div>
