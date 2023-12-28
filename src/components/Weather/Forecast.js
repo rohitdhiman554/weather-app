@@ -3,7 +3,7 @@ import SunLogo from '../../assets/images/sun.png'
 const Forecast = () => {
     return (
         <div className='flex flex-col p-5 gap-5 bg-[#EAECEF] rounded-md'>
-            <span className='font-bold text-sm'>TODAY'S FORECAST</span>
+            <span className='font-bold text-sm text-[#344054]'>TODAY'S FORECAST</span>
             <div className='flex gap-5 w-full'>
                 <div className='flex flex-col items-center px-8 py-4 gap-2 shadow-lg rounded-md'>
                     <span className='font-semibold text-[#98A2B3]'>6:00 AM</span>
