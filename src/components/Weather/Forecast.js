@@ -10,8 +10,6 @@ const Forecast = () => {
                     <img src={SunLogo} width={60} alt='sunlogo' />
                     <span className='font-bold text-lg'>25&deg;</span>
                 </div>
-
-
             </div>
         </div>
     )
