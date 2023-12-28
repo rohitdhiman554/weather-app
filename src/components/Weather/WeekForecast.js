@@ -9,6 +9,7 @@ const WeekForecast = () => {
         { day: 'Sat', weather: 'Rainy', high: 37, low: 21 },
         { day: 'Sun', weather: 'Sunny', high: 37, low: 21 },
     ];
+
     const WeatherIcon = ({ weather }) => {
         switch (weather) {
             case 'Sunny':
