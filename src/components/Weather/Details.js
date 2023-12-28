@@ -1,4 +1,6 @@
 import SunLogo from '../../assets/images/sun.png'
+import Forecast from './Forecast'
+
 const WeatherDetails = () => {
     return (
         <div className='flex flex-col w-10/12 gap-8'>
@@ -9,13 +11,10 @@ const WeatherDetails = () => {
                     <span className="text-5xl mt-10 font-bold">31&deg;C</span>
                 </div>
                 <div>
-                    <img src={SunLogo} width={180} height={150} alt='sunlogo' />
+                    <img src={SunLogo} width={180} alt='sunlogo' />
                 </div>
             </div>
-            <div className='flex flex-col p-5 bg-[#EAECEF] rounded-md'>
-
-                <span className='font-semibold text-sm'>TODAY'S FORECAST</span>
-            </div>
+            <Forecast />
         </div>
     )
 }
