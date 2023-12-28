@@ -6,9 +6,9 @@ import SearchBar from './components/search';
 
 function App() {
   return (
-    <div className='flex w-full h-screen border-black'>
+    <div className='flex w-full'>
 
-      <div className='h-screen p-8'>
+      <div className='h-full p-8'>
         <SideBar />
       </div>
       <div className='flex flex-col w-3/5 ml-5'>
