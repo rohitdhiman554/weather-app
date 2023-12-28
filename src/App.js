@@ -1,11 +1,12 @@
 import './App.css';
 import SideBar from './components/Sidebar';
-import WeatherDetails from './components/Weather/Details';
+import WeatherDetails from './components/Weather';
+import WeekForecast from './components/Weather/WeekForecast';
 import SearchBar from './components/search';
 
 function App() {
   return (
-    <div className='flex w-full border-black'>
+    <div className='flex w-full h-screen border-black'>
 
       <div className='h-screen p-8'>
         <SideBar />
@@ -17,6 +18,9 @@ function App() {
         <div className='flex justify-center'>
           <WeatherDetails />
         </div>
+      </div>
+      <div className='p-8 w-4/12 h-screen'>
+        <WeekForecast />
       </div>
     </div>
   );
