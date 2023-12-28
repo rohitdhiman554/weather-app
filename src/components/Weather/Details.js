@@ -1,4 +1,5 @@
 import SunLogo from '../../assets/images/sun.png'
+import WeatherCondition from './Condition'
 import Forecast from './Forecast'
 
 const WeatherDetails = () => {
@@ -15,6 +16,7 @@ const WeatherDetails = () => {
                 </div>
             </div>
             <Forecast />
+            <WeatherCondition />
         </div>
     )
 }
