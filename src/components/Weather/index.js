@@ -1,27 +1,10 @@
 import { Fragment } from 'react'
+import { WeatherIcon } from '../../utils/helpers'
 
-import SunnyLogo from '../../assets/images/sunny.png'
-import CloudyLogo from '../../assets/images/cloudy.png'
-import RainyLogo from '../../assets/images/rainy.png'
 import WeatherCondition from './Condition'
 import Forecast from './Forecast'
 
 const WeatherDetails = ({ tempData }) => {
-
-    const WeatherIcon = (weather) => {
-        switch (weather) {
-            case 'Sunny':
-                return SunnyLogo;
-            case 'Cloudy':
-                return CloudyLogo;
-            case 'Rainy':
-                return RainyLogo;
-            default:
-                return SunnyLogo;
-        }
-    };
-
-    console.log("tempDat", tempData);
 
     return (
         <Fragment>
