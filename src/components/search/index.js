@@ -3,7 +3,9 @@ const SearchBar = ({ setSearch }) => {
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
+            event.target.blur();
             setSearch(event.target.value);
+
         }
     }
     return (
