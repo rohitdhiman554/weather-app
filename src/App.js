@@ -49,11 +49,11 @@ function App() {
       <div className='flex flex-col gap-5 w-3/5 ml-8'>
         <SearchBar setSearch={setSearch} />
         <div className='flex justify-center'>
-          {!isLoading ? <WeatherDetails tempData={tempData} isLoading={isLoading} /> : <Loader />}
+          {!isLoading ? <WeatherDetails tempData={tempData} /> : <Loader />}
         </div>
       </div>
       <div className='w-4/12 mb-5'>
-        {!isLoading ? <WeekForecast tempData={tempData} isLoading={isLoading} /> : <Loader />}
+        {!isLoading ? <WeekForecast tempData={tempData} /> : <Loader />}
       </div>
     </div>
   );
