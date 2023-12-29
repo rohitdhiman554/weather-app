@@ -35,8 +35,11 @@ function App() {
   }, [search]);
 
   return (
-    <div className='flex w-full h-full p-8 gap-8'>
-      <SideBar />
+    <div className='flex w-full h-screen p-8 gap-8'>
+      <div className='h-full'>
+        <SideBar />
+
+      </div>
       <div className='flex flex-col gap-5 w-3/5 ml-8'>
         <SearchBar setSearch={setSearch} />
         <div className='flex justify-center'>

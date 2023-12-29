@@ -30,16 +30,16 @@ const WeatherCondition = ({ airCondition }) => {
     ];
 
     return (
-        <div className="bg-[#EAECEF] rounded-md p-5 mb-5">
+        <div className="bg-[#EAECEF] rounded-md p-8  mb-5">
             <div className="font-bold text-sm text-[#344054] mb-4">AIR CONDITIONS</div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 mt-8 gap-10">
                 {conditions.map((condition, index) => (
-                    <div key={index} className="flex gap-1 flex-col items-center justify-center">
+                    <div key={index} className="flex gap-1 flex-col justify-center">
                         <div className="flex items-center text-gray-500 text-sm">
-                            <condition.Icon className="w-6 h-6" />
-                            <span className="ml-2">{condition.label}</span>
+                            <condition.Icon stroke="#98A2B3" className="w-8 h-8" />
+                            <span className="ml-2 font-medium text-[#98A2B3]">{condition.label}</span>
                         </div>
-                        <div className="font-bold text-xl">{condition.value}</div>
+                        <div className="font-bold text-xl ml-10">{condition.value}</div>
                     </div>
                 ))}
             </div>
