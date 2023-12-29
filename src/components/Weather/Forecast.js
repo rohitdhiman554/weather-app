@@ -12,12 +12,12 @@ const Forecast = ({ hourlyForcastData }) => {
     };
 
     return (
-        <div className='flex flex-col p-5 gap-5 bg-[#EAECEF] rounded-md'>
+        <div className='flex flex-col p-5 bg-[#EAECEF] rounded-md'>
             <span className='font-bold text-sm text-[#344054]'>TODAY'S FORECAST</span>
-            <div className='flex gap-5'>
+            <div className='flex gap-5 overflow-x-auto py-4'>
                 {dataAtIntervals.map((temp) => {
                     return (
-                        <div className='flex flex-col w-full items-center border-2 py-4 gap-2 shadow-lg rounded-md'>
+                        <div className='flex flex-col w-full items-center min-w-max px-6 border-2 py-4 gap-2 shadow-md rounded-md'>
                             <span className='font-semibold text-[#98A2B3]'>{formatTime(temp.time)}</span>
                             <img src={WeatherIcon(temp.condition.text)} width={60} alt='sunlogo' />
                             <span className='font-bold text-lg'>{temp.temp_c}&deg;C</span>

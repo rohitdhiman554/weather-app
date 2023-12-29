@@ -1,41 +1,29 @@
+import React from 'react';
+import { WeatherIcon, getWeekday } from '../../utils/helpers';
 
-const WeekForecast = () => {
-    const weekForecast = [
-        { day: 'Today', weather: 'Sunny', high: 36, low: 22 },
-        { day: 'Tue', weather: 'Sunny', high: 37, low: 21 },
-        { day: 'Wed', weather: 'Sunny', high: 37, low: 21 },
-        { day: 'Thu', weather: 'Cloudy', high: 37, low: 21 },
-        { day: 'Fri', weather: 'Cloudy', high: 37, low: 21 },
-        { day: 'Sat', weather: 'Rainy', high: 37, low: 21 },
-        { day: 'Sun', weather: 'Sunny', high: 37, low: 21 },
-    ];
+const WeekForecast = ({ daysForecast }) => {
 
-    const WeatherIcon = ({ weather }) => {
-        switch (weather) {
-            case 'Sunny':
-                return <span className="text-yellow-400">☀️</span>;
-            case 'Cloudy':
-                return <span className="text-gray-400">☁️</span>;
-            case 'Rainy':
-                return <span className="text-blue-400">🌧️</span>;
-            default:
-                return <span>❓</span>;
-        }
-    };
+
     return (
-        <div className="bg-white p-5 h-full rounded shadow w-full border-2">
-            <div className="text-lg font-bold mb-4">7-DAY FORECAST</div>
-            {weekForecast.map((day, index) => (
-                <div key={index} className="flex items-center px-5 py-7 justify-between border-b-2 border-gray-">
-                    <div className="font-medium">{day.day}</div>
-                    <WeatherIcon weather={day.weather} />
-                    <div className="text-sm font-light">
-                        {day.high}° / {day.low}°
+        <div className="p-5  rounded-md shadow border-2">
+            <div className="text-lg font-bold mb-4 text-[#98A2B3]">FUTURE FORECAST</div>
+            {daysForecast.map((forecast, index) => (
+                <div key={index} className="grid grid-cols-5 items-center justify-center px-5 py-7 border-b-2">
+                    <div className="font-medium text-[#98A2B3]">{getWeekday(forecast.date)}</div>
+                    <div className='grid grid-cols-5 max-w-56 w-full mx-auto col-span-3 items-center'>
+                        <div className='col-span-3'>
+                            <img src={WeatherIcon(forecast.day.condition.text)} width={100} alt='weather logo' />
+                        </div>
+                        <p className='font-medium col-span-2'>{forecast.day.condition.text}</p>
+                    </div>
+                    <div className='font-medium text-right'>
+                        <span>{forecast.day.maxtemp_c}°/ </span>
+                        <span className='text-[#98A2B3]'>{forecast.day.mintemp_c}°</span>
                     </div>
                 </div>
             ))}
         </div>
-    )
-}
+    );
+};
 
-export default WeekForecast
+export default WeekForecast;

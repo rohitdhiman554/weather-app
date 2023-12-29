@@ -22,11 +22,12 @@ function App() {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search || DEFAULT_CITY}&days=1&aqi=no&alerts=no`);
+        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search || DEFAULT_CITY}&days=3&aqi=no&alerts=no`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log("data", data);
         setIsLoading(false)
         setTempData(data);
 
@@ -39,23 +40,28 @@ function App() {
 
   }, [search])
 
-
   return (
-    <div className='flex w-full h-screen p-8 gap-8'>
-      <div className='h-full'>
+    <div className='flex w-full max-w-7xl justify-center lg:justify-normal mx-auto h-full gap-8'>
+      <div className='h-full hidden md:flex py-4 top-0 lg:fixed'>
         <SideBar />
-
       </div>
-      <div className='flex flex-col gap-5 w-3/5 ml-8'>
-        <SearchBar setSearch={setSearch} />
-        <div className='flex justify-center'>
-          {!isLoading ? <WeatherDetails tempData={tempData} /> : <Loader />}
+      {/* xl:max-w-2xl lg:max-w-lg */}
+      <div className='flex  w-11/12 pl-28 h-full py-4 gap-8'>
+        <div className='w-5/6 flex flex-col gap-4'>
+          <SearchBar setSearch={setSearch} />
+          <div className='justify-center items-center'>
+            {!isLoading ? <WeatherDetails tempData={tempData} /> :
+              <div className='flex justify-center items-center h-[790px]'> <Loader size='large' /></div>}</div>
+        </div>
+        <div className='lg:relative flex border-2 border-black'>
+          <div className='lg:fixed lg:top-4 pb-10'>
+            {!isLoading && tempData?.forecast?.forecastday ? (
+              <WeekForecast daysForecast={tempData.forecast.forecastday} />
+            ) : null}
+          </div>
         </div>
       </div>
-      <div className='w-4/12 mb-5'>
-        {!isLoading ? <WeekForecast tempData={tempData} /> : <Loader />}
-      </div>
-    </div>
+    </div >
   );
 }
 
