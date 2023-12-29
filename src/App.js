@@ -5,9 +5,9 @@ import SideBar from './components/Sidebar';
 import WeatherDetails from './components/Weather';
 import WeekForecast from './components/Weather/WeekForecast';
 import SearchBar from './components/Search';
-import { API_KEY, ERROR_MESSAGE } from '../src/utils/constants/index'
+import { API_KEY, ERROR_MESSAGE } from './utils/constants/constants'
 import Loader from './components/shared/Loader'
-import { DEFAULT_CITY } from '../src/utils/constants/index';
+import { DEFAULT_CITY } from './utils/constants/constants';
 import ErrorPage from './components/Error';
 
 

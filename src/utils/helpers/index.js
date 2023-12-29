@@ -3,7 +3,7 @@ import CloudyLogo from '../../assets/images/cloudy.png'
 import RainyLogo from '../../assets/images/rainy.png'
 import WindLogo from '../../assets/images/wind.png'
 import SnowLogo from '../../assets/images/snow.png'
-import { DaysOfWeek, WeatherType } from '../constants';
+import { DaysOfWeek, WeatherType } from '../constants/constants';
 
 export const WeatherIcon = (weatherDescription) => {
     const lowerCaseWeather = weatherDescription.toLowerCase();
