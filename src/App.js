@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 import SideBar from './components/Sidebar';
 import WeatherDetails from './components/Weather';
 import WeekForecast from './components/Weather/WeekForecast';
 import SearchBar from './components/Search';
-import { API_KEY, ERROR_MESSAGE } from './utils/constants/constants'
-import Loader from './components/shared/Loader'
-import { DEFAULT_CITY } from './utils/constants/constants';
+import Loader from './components/shared/Loader';
 import ErrorPage from './components/Error';
-
+import { API_KEY, DEFAULT_CITY, ERROR_MESSAGE } from './utils/constants/constants';
 
 function App() {
   const [search, setSearch] = useState();
@@ -18,25 +16,45 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setIsError(false);
-      try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search || DEFAULT_CITY}&days=3&aqi=no&alerts=no`);
-        if (!response.ok) {
-          setIsError(true);
-        }
-        const data = await response.json();
-        setTempData(data);
-      } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    const savedData = localStorage.getItem('lastSearchedCityWeather');
+    if (savedData) {
+      const { city, data } = JSON.parse(savedData);
+      setSearch(city);
+      setTempData(data);
+    } else {
+      fetchData(); // Fetch data if no saved data is found
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    fetchData();
+  useEffect(() => {
+    if (search) {
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    setIsError(false);
+    try {
+      const query = search || DEFAULT_CITY;
+      const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setTempData(data);
+
+      // Save to local storage
+      localStorage.setItem('lastSearchedCityWeather', JSON.stringify({ city: query, data }));
+    } catch (error) {
+      console.error("Could not fetch the data", error);
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className='flex w-full max-w-7xl justify-center lg:justify-normal mx-auto h-full gap-8'>
@@ -50,7 +68,7 @@ function App() {
             {isError ? (
               <ErrorPage errorMessage={ERROR_MESSAGE} />
             ) : isLoading ? (
-              <div className='flex h-96 justify-center items-center'>
+              <div className='flex justify-center items-center'>
                 <Loader size='large' />
               </div>
             ) : (
@@ -65,8 +83,6 @@ function App() {
             ) : null}
           </div>
         </div>
-
-
       </div>
     </div>
   );
