@@ -22,6 +22,7 @@ const WeatherDetails = ({ tempData, isLoading }) => {
     };
 
 
+
     return (
         <Fragment>
             {tempData ? (

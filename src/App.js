@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import './App.css';
 import SideBar from './components/Sidebar';
 import WeatherDetails from './components/Weather';
@@ -6,6 +7,7 @@ import WeekForecast from './components/Weather/WeekForecast';
 import SearchBar from './components/search';
 import { API_KEY } from '../src/utils/constants/index'
 import Loader from './components/shared/Loader'
+import { DEFAULT_CITY } from '../src/utils/constants/index';
 
 
 function App() {
@@ -14,11 +16,13 @@ function App() {
   const [tempData, setTempData] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
 
+
   useEffect(() => {
+
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search}&days=1&aqi=no&alerts=no`);
+        const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${search || DEFAULT_CITY}&days=1&aqi=no&alerts=no`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -32,7 +36,9 @@ function App() {
     };
 
     fetchData();
-  }, [search]);
+
+  }, [search])
+
 
   return (
     <div className='flex w-full h-screen p-8 gap-8'>
