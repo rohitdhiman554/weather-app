@@ -32,3 +32,10 @@ export const getWeekday = (dateString) => {
     const date = new Date(dateString);
     return days[date.getDay()];
 };
+
+export const getFormattedTime = (time) => {
+    const [datePart, timePart] = time.split(' ');
+    const timeString = `${datePart}T${timePart}:00`;
+    const date = new Date(timeString);
+    return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+};

@@ -22,7 +22,7 @@ function App() {
       setSearch(city);
       setTempData(data);
     } else {
-      fetchData(); // Fetch data if no saved data is found
+      fetchData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,7 +46,7 @@ function App() {
       const data = await response.json();
       setTempData(data);
 
-      // Save to local storage
+
       localStorage.setItem('lastSearchedCityWeather', JSON.stringify({ city: query, data }));
     } catch (error) {
       console.error("Could not fetch the data", error);
