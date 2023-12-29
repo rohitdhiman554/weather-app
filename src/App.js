@@ -27,7 +27,6 @@ function App() {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("data", data);
         setIsLoading(false)
         setTempData(data);
 
@@ -53,7 +52,7 @@ function App() {
             {!isLoading ? <WeatherDetails tempData={tempData} /> :
               <div className='flex justify-center items-center h-[790px]'> <Loader size='large' /></div>}</div>
         </div>
-        <div className='lg:relative flex border-2 border-black'>
+        <div className='lg:relative flex'>
           <div className='lg:fixed lg:top-4 pb-10'>
             {!isLoading && tempData?.forecast?.forecastday ? (
               <WeekForecast daysForecast={tempData.forecast.forecastday} />

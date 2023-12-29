@@ -10,3 +10,14 @@ export const DaysOfWeek = {
     FRIDAY: 'Friday',
     SATURDAY: 'Saturday'
 };
+
+export const WeatherType = {
+    SUNNY: 'sunny',
+    CLOUDY: 'cloudy',
+    RAIN: 'rain',
+    WIND: 'wind',
+    SNOW: 'snow',
+    MIST: 'mist',
+    FOG: 'fog',
+};
+
