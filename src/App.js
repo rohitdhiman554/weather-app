@@ -79,14 +79,12 @@ function App() {
           <SearchBar setSearch={setSearch} isLoading={isLoading} />
         </div>
       </div>
-      <div className="flex flex-col justify-center md:flex-row w-full max-w-7xl px-5 mx-auto h-full gap-8 mt-24">
+      <div className="flex flex-col justify-center md:flex-row w-full max-w-7xl px-5 mx-auto h-full gap-5 mt-24">
         <div className={clsx(!isError ? "md:overflow-y-auto scroll-container overflow-x-hidden md:h-[85vh]" : null)}>
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
           ) : isLoading ? (
-            <div className="flex justify-center mt-5">
-              <Loader size="large" />
-            </div>
+            <Loader size="large" />
           ) : (
             <WeatherDetails tempData={tempData} />
           )}

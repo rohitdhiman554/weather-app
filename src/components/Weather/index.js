@@ -8,7 +8,7 @@ const WeatherDetails = ({ tempData }) => {
     return (
         <Fragment>
             {tempData ? (
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-8 md:mx-4 mx-0">
                     <div className="flex justify-between items-center">
                         <div className="flex flex-col gap-2">
                             <span className="text-5xl md:w-full w-48 break-words font-bold">
