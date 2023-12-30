@@ -52,9 +52,6 @@ function App() {
       const response = await fetch(
         `${WEATHER_BASE_URL}?key=${API_KEY}&q=${city}&days=3&aqi=no&alerts=no`, {
         mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
       }
       );
 
