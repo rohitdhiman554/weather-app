@@ -40,7 +40,7 @@ const WeatherCondition = ({ airCondition }) => {
                                 {weather.label}
                             </span>
                         </div>
-                        <div className="font-bold text-3xl ml-10">{weather.value}</div>
+                        <div className="font-bold md:text-3xl text-2xl whitespace-nowrap ml-10">{weather.value}</div>
                     </div>
                 ))}
             </div>
