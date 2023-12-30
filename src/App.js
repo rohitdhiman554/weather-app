@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import WeatherDetails from "./components/Weather";
 import WeekForecast from "./components/Weather/WeekForecast";
-import SearchBar from "./components/Search";
 import Loader from "./components/shared/Loader";
 import ErrorPage from "./components/Error";
+import SearchBar from './components/Search';
 import {
   API_KEY,
   DEFAULT_CITY,
