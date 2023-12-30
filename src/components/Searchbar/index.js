@@ -38,7 +38,7 @@ const SearchBar = ({ setSearch, isLoading }) => {
                             <Loader />
                         ) : (
                             <div className="cursor-pointer" onClick={handleSearch}>
-                                <Search />
+                                <Search width={30} />
                             </div>
                         )}
                     </div>
