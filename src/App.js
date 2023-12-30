@@ -91,11 +91,10 @@ function App() {
             <WeatherDetails tempData={tempData} />
           )}
         </div>
-        <div className="pb-10 md:pb-0 md:w-5/12 w-full">
-          {!isLoading && !isError && tempData?.forecast?.forecastday ? (
-            <WeekForecast daysForecast={tempData.forecast.forecastday} />
-          ) : null}
-        </div>
+        {!isError && !isLoading && tempData?.forecast?.forecastday ? <div className="pb-10 md:pb-0 md:w-5/12 w-full">
+          <WeekForecast daysForecast={tempData.forecast.forecastday} />
+        </div> : null
+        }
       </div>
     </div>
   );
