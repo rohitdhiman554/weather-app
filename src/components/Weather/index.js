@@ -11,7 +11,7 @@ const WeatherDetails = ({ tempData }) => {
                 <div className="flex flex-col gap-8">
                     <div className="flex justify-between items-center">
                         <div className="flex flex-col gap-2">
-                            <span className="text-5xl font-bold">
+                            <span className="text-5xl md:w-full w-48 break-words font-bold">
                                 {tempData.location.name}
                             </span>
                             <span className="text-primary text-lg">
