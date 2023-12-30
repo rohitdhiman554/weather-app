@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useState, useEffect } from "react";
 
 import "./App.css";
@@ -13,7 +14,6 @@ import {
   WEATHER_BASE_URL,
   LAST_SEARCHED_CITY
 } from "./utils/constants/constants";
-import clsx from "clsx";
 
 function App() {
   const [search, setSearch] = useState(DEFAULT_CITY);
