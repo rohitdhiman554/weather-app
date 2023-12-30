@@ -19,4 +19,5 @@ function Temperature(props) {
         </svg>
     )
 }
+
 export default Temperature

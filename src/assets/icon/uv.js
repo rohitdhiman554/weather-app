@@ -25,4 +25,5 @@ function Uv(props) {
         </svg>
     )
 }
+
 export default Uv

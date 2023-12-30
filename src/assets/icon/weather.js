@@ -15,4 +15,5 @@ function WeatherLogo(props) {
         </svg>
     )
 }
+
 export default WeatherLogo

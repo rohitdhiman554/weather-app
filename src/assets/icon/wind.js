@@ -18,4 +18,5 @@ function Wind(props) {
         </svg>
     )
 }
+
 export default Wind
