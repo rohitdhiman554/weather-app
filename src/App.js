@@ -11,6 +11,7 @@ import {
   DEFAULT_CITY,
   ERROR_MESSAGE,
   WEATHER_BASE_URL,
+  LAST_SEARCHED_CITY
 } from "./utils/constants/constants";
 import clsx from "clsx";
 
@@ -24,7 +25,7 @@ function App() {
     const fetchInitialData = async () => {
       setIsLoading(true);
       try {
-        const savedData = localStorage.getItem("lastSearchedCityWeather");
+        const savedData = localStorage.getItem(LAST_SEARCHED_CITY);
         if (savedData) {
           const { city, data } = JSON.parse(savedData);
           setSearch(city);
@@ -62,7 +63,7 @@ function App() {
       const data = await response.json();
       setTempData(data);
       localStorage.setItem(
-        "lastSearchedCityWeather",
+        LAST_SEARCHED_CITY,
         JSON.stringify({ city, data })
       );
     } catch (error) {
