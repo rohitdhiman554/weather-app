@@ -84,7 +84,9 @@ function App() {
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
           ) : isLoading ? (
-            <Loader size="large" />
+            <div className="flex justify-center mt-5">
+              <Loader size="large" />
+            </div>
           ) : (
             <WeatherDetails tempData={tempData} />
           )}
