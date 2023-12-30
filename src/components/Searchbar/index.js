@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Search from "../../assets/icon/search";
 import WeatherLogo from "../../assets/icon/weather";
 import Loader from "../shared/Loader";

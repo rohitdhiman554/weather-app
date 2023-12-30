@@ -1,4 +1,3 @@
-import React from "react";
 import { WeatherIcon, getWeekday } from "../../utils/helpers";
 
 const WeekForecast = ({ daysForecast }) => {
