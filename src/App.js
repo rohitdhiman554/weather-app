@@ -31,6 +31,7 @@ function App() {
           setSearch(city);
           setTempData(data);
         } else {
+          setSearch(DEFAULT_CITY);
           await fetchData(DEFAULT_CITY);
         }
       } catch (error) {
@@ -40,6 +41,7 @@ function App() {
       }
     };
     fetchInitialData();
+
   }, []);
 
   useEffect(() => {
