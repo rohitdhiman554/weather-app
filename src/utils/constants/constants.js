@@ -1,7 +1,7 @@
 export const API_KEY = "392ae6de1c254012bd2172454232812";
 export const DEFAULT_CITY = "Chandigarh"
 export const ERROR_MESSAGE = 'Unable to display the forecast data due to an error'
-export const WEATHER_BASE_URL = "http://api.weatherapi.com/v1/forecast.json"
+export const WEATHER_BASE_URL = "https://api.weatherapi.com/v1/forecast.json"
 
 export const DaysOfWeek = {
     SUNDAY: 'Sunday',
