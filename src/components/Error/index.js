@@ -1,7 +1,7 @@
 
 const ErrorPage = ({ errorMessage }) => {
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="flex justify-center border items-center bg-gray-100">
             <div className="text-center p-6 bg-white shadow-md rounded">
                 <h2 className="text-2xl font-semibold text-red-600 mb-2">Oops!</h2>
                 <p className="text-gray-800 text-lg mb-4">Something went wrong.</p>

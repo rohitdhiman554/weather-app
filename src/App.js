@@ -12,6 +12,7 @@ import {
   ERROR_MESSAGE,
   WEATHER_BASE_URL,
 } from "./utils/constants/constants";
+import clsx from "clsx";
 
 function App() {
   const [search, setSearch] = useState(DEFAULT_CITY);
@@ -77,7 +78,7 @@ function App() {
         </div>
       </div>
       <div className="flex flex-col md:flex-row max-w-7xl px-8 mx-auto h-full gap-4 mt-24">
-        <div className="md:overflow-y-auto scroll-container md:h-[85vh]">
+        <div className={clsx(!isError ? "md:overflow-y-auto scroll-container md:h-[85vh]" : null)}>
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
           ) : isLoading ? (
