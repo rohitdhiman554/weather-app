@@ -10,53 +10,59 @@ import {
   API_KEY,
   DEFAULT_CITY,
   ERROR_MESSAGE,
+  WEATHER_BASE_URL,
 } from "./utils/constants/constants";
 
 function App() {
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState(DEFAULT_CITY);
   const [tempData, setTempData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const savedData = localStorage.getItem("lastSearchedCityWeather");
-    if (savedData) {
-      const { city, data } = JSON.parse(savedData);
-      setSearch(city);
-      setTempData(data);
-    } else {
-      fetchData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const fetchInitialData = async () => {
+      setIsLoading(true);
+      try {
+        const savedData = localStorage.getItem("lastSearchedCityWeather");
+        if (savedData) {
+          const { city, data } = JSON.parse(savedData);
+          setSearch(city);
+          setTempData(data);
+        } else {
+          await fetchData(DEFAULT_CITY);
+        }
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchInitialData();
   }, []);
 
   useEffect(() => {
-    if (search) {
-      fetchData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchData(search);
   }, [search]);
 
-  const fetchData = async () => {
+  const fetchData = async (city) => {
     setIsLoading(true);
     setIsError(false);
     try {
-      const query = search || DEFAULT_CITY;
       const response = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`
+        `${WEATHER_BASE_URL}?key=${API_KEY}&q=${city}&days=3&aqi=no&alerts=no`
       );
+
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error("Failed to fetch weather data");
       }
+
       const data = await response.json();
       setTempData(data);
-
       localStorage.setItem(
         "lastSearchedCityWeather",
-        JSON.stringify({ city: query, data })
+        JSON.stringify({ city, data })
       );
     } catch (error) {
-      console.error("Could not fetch the data", error);
       setIsError(true);
     } finally {
       setIsLoading(false);
@@ -75,9 +81,7 @@ function App() {
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
           ) : isLoading ? (
-            <div className="flex justify-center items-center">
-              <Loader size="large" />
-            </div>
+            <Loader size="large" />
           ) : (
             <WeatherDetails tempData={tempData} />
           )}
