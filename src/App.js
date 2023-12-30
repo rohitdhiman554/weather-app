@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import WeatherDetails from "./components/Weather";
 import WeekForecast from "./components/Weather/WeekForecast";
-import SearchBar from "./components/Search";
+import SearchBar from "./components/Search/index";
 import Loader from "./components/shared/Loader";
 import ErrorPage from "./components/Error";
 import {
