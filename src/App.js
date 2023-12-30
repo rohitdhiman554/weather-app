@@ -5,7 +5,7 @@ import WeatherDetails from "./components/Weather";
 import WeekForecast from "./components/Weather/WeekForecast";
 import Loader from "./components/shared/Loader";
 import ErrorPage from "./components/Error";
-import SearchBar from './components/Search';
+import SearchBar from './components/Searchbar';
 import {
   API_KEY,
   DEFAULT_CITY,
