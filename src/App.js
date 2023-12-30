@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { useState, useEffect } from "react";
+import clsx from "clsx";
 
 import "./App.css";
 import WeatherDetails from "./components/Weather";
@@ -75,7 +75,7 @@ function App() {
   return (
     <div className="flex w-full justify-between lg:justify-normal mx-auto h-full gap-4">
       <div className="fixed w-full border-b bg-white">
-        <div className="max-w-7xl px-8 mx-auto">
+        <div className="px-8 mx-auto">
           <SearchBar setSearch={setSearch} isLoading={isLoading} />
         </div>
       </div>
