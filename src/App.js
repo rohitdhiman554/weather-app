@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import './App.css';
-import SideBar from './components/Sidebar';
-import WeatherDetails from './components/Weather';
-import WeekForecast from './components/Weather/WeekForecast';
-import SearchBar from './components/Search';
-import Loader from './components/shared/Loader';
-import ErrorPage from './components/Error';
-import { API_KEY, DEFAULT_CITY, ERROR_MESSAGE } from './utils/constants/constants';
+import "./App.css";
+import WeatherDetails from "./components/Weather";
+import WeekForecast from "./components/Weather/WeekForecast";
+import SearchBar from "./components/Search";
+import Loader from "./components/shared/Loader";
+import ErrorPage from "./components/Error";
+import {
+  API_KEY,
+  DEFAULT_CITY,
+  ERROR_MESSAGE,
+} from "./utils/constants/constants";
 
 function App() {
   const [search, setSearch] = useState();
@@ -16,7 +19,7 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    const savedData = localStorage.getItem('lastSearchedCityWeather');
+    const savedData = localStorage.getItem("lastSearchedCityWeather");
     if (savedData) {
       const { city, data } = JSON.parse(savedData);
       setSearch(city);
@@ -39,15 +42,19 @@ function App() {
     setIsError(false);
     try {
       const query = search || DEFAULT_CITY;
-      const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`);
+      const response = await fetch(
+        `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&days=3&aqi=no&alerts=no`
+      );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
       setTempData(data);
 
-
-      localStorage.setItem('lastSearchedCityWeather', JSON.stringify({ city: query, data }));
+      localStorage.setItem(
+        "lastSearchedCityWeather",
+        JSON.stringify({ city: query, data })
+      );
     } catch (error) {
       console.error("Could not fetch the data", error);
       setIsError(true);
@@ -57,31 +64,28 @@ function App() {
   };
 
   return (
-    <div className='flex w-full max-w-7xl justify-center lg:justify-normal mx-auto h-full gap-8'>
-      <div className='h-full hidden md:flex py-4 top-0 lg:fixed'>
-        <SideBar />
-      </div>
-      <div className='flex w-11/12 pl-28 h-full py-4 gap-8'>
-        <div className='w-5/6 flex flex-col gap-4'>
-          <SearchBar setSearch={setSearch} />
-          <div className='justify-center items-center h-[790px]'>
-            {isError ? (
-              <ErrorPage errorMessage={ERROR_MESSAGE} />
-            ) : isLoading ? (
-              <div className='flex justify-center items-center'>
-                <Loader size='large' />
-              </div>
-            ) : (
-              <WeatherDetails tempData={tempData} />
-            )}
-          </div>
+    <div className="flex w-full justify-between lg:justify-normal mx-auto h-full gap-4">
+      <div className="fixed w-full border-b bg-white">
+        <div className="max-w-7xl px-8 mx-auto">
+          <SearchBar setSearch={setSearch} isLoading={isLoading} />
         </div>
-        <div className='lg:relative flex'>
-          <div className='lg:fixed lg:top-4 pb-10'>
-            {!isLoading && !isError && tempData?.forecast?.forecastday ? (
-              <WeekForecast daysForecast={tempData.forecast.forecastday} />
-            ) : null}
-          </div>
+      </div>
+      <div className="flex flex-col md:flex-row max-w-7xl px-8 mx-auto h-full gap-4 mt-24">
+        <div className="md:overflow-y-auto scroll-container md:h-[85vh]">
+          {isError ? (
+            <ErrorPage errorMessage={ERROR_MESSAGE} />
+          ) : isLoading ? (
+            <div className="flex justify-center items-center">
+              <Loader size="large" />
+            </div>
+          ) : (
+            <WeatherDetails tempData={tempData} />
+          )}
+        </div>
+        <div className="pb-10">
+          {!isLoading && !isError && tempData?.forecast?.forecastday ? (
+            <WeekForecast daysForecast={tempData.forecast.forecastday} />
+          ) : null}
         </div>
       </div>
     </div>
