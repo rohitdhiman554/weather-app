@@ -75,7 +75,7 @@ function App() {
   return (
     <div className="flex w-full justify-between lg:justify-normal mx-auto h-full gap-4">
       <div className="fixed w-full border-b bg-white">
-        <div className="max-w-7xl px-8 mx-auto">
+        <div className="max-w-7xl px-6 mx-auto">
           <SearchBar setSearch={setSearch} isLoading={isLoading} />
         </div>
       </div>
@@ -84,7 +84,9 @@ function App() {
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
           ) : isLoading ? (
-            <Loader size="large" />
+            <div className="flex justify-center mt-5">
+              <Loader size="large" />
+            </div>
           ) : (
             <WeatherDetails tempData={tempData} />
           )}
