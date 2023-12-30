@@ -83,7 +83,7 @@ function App() {
           <SearchBar setSearch={setSearch} isLoading={isLoading} />
         </div>
       </div>
-      <div className="flex flex-col md:flex-row max-w-7xl mx-auto h-full gap-4 mt-24">
+      <div className="flex flex-col md:flex-row max-w-7xl px-5 mx-auto h-full gap-4 mt-24">
         <div className={clsx(!isError ? "md:overflow-y-auto scroll-container md:h-[85vh]" : null)}>
           {isError ? (
             <ErrorPage errorMessage={ERROR_MESSAGE} />
